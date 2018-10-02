@@ -130,7 +130,7 @@ File naming convention
 
 The data files produced by Exo-Transmit  are not intended to be read by a human. This is to say they are human readable, but aren't hugely useful in this format, except for sanity checking to see that you haven't got all NaNs or something.
 
-All files are by default saved in ExoTransmitSpectra/{EoS_name}/{Temperature}/{file name}
+All files are by default saved in ExoTransmitSpectra/{hostname}/{EoS_name}/{Temperature}/{file name}
 
 The data file names are in the following convention:
 

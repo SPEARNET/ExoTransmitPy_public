@@ -25,13 +25,16 @@ import os
 import multiprocessing as mp
 import errno
 import shutil
+import socket
 
 # Makes the path to config.txt, which MUST be in the same directory as this file
-PATH_TO_ORIGINAL_CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'include/_config_original.txt')
+PATH_TO_ORIGINAL_CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'include/__config_original.txt')
 if not os.path.exists(PATH_TO_ORIGINAL_CONFIG_FILE):
-    raise FileNotFoundError('exotransmit/include/_config_original.txt could not be found. Please ensure it is in the correct place.')
+    raise FileNotFoundError('exotransmit/include/__config_original.txt could not be found. Please ensure it is in the correct place.')
 
-PATH_TO_CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'include/_config.txt')
+config_fname = '_config-{}.txt'.format(socket.gethostname())
+
+PATH_TO_CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'include/{}'.format(config_fname))
 
 
 def _read_config_data():
@@ -158,7 +161,7 @@ def _configure_exotransmit_cluster(reconfigure=False):
             if EXOTRANSMIT_CLUSTER_PATH == '':
                 # No path is specified in the config.txt file - default to same directory Exo-Transmit is in
                 # Update config.txt with this new path
-                EXOTRANSMIT_CLUSTER_PATH = os.path.join(EXOTRANSMIT_ORIGINAL_DIR, 'ExoTransmitCluster')
+                EXOTRANSMIT_CLUSTER_PATH = os.path.join(EXOTRANSMIT_ORIGINAL_DIR, 'ExoTransmitCluster/{}'.format(socket.gethostname()))
 
                 with open(PATH_TO_CONFIG_FILE, 'r') as f:
                     config_file_lines = f.readlines()

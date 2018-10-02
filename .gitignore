@@ -42,6 +42,6 @@ Thumbs.db
 
 # ExoTransmitPy things
 ######################
-/exotransmit/include/_config.txt
+/exotransmit/include/_config*.txt
 /dist
 /build
