@@ -48,7 +48,7 @@ from .io import list_eos
 from .core import run
 
 # Metadata
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 __author__ = 'Joshua Hayes'
 __status__ = 'Development'
 __contact__ = 'joshua.hayes@postgrad.manchester.ac.uk'
