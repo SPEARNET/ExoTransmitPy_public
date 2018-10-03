@@ -37,7 +37,7 @@ def read(fname):
 # Install the Python libraries to machine
 setup(
     name='exotransmit',
-    version='1.0.0',
+    version='1.1.0',
     packages=find_packages(),
     author='Joshua Hayes',
     author_email='joshua.hayes@postgrad.manchester.ac.uk',
