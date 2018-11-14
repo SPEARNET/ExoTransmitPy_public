@@ -57,10 +57,8 @@ def _read_config_data():
     '''
     if os.path.exists(PATH_TO_CONFIG_FILE):
         path_to_config = PATH_TO_CONFIG_FILE
-        first_time = False
     else:
         path_to_config = PATH_TO_ORIGINAL_CONFIG_FILE
-        first_time = True
 
     with open(path_to_config, 'r') as f:
         config_file_lines = [line.strip() for line in f.readlines()]
@@ -80,7 +78,7 @@ def _read_config_data():
     else:
         raise Exception('ERROR: SETUP_COMPLETED value corrupted.')
 
-    return EXOTRANSMIT_URL, EXOTRANSMIT_ORIGINAL_PATH, EXOTRANSMIT_CLUSTER_PATH, EXOTRANSMIT_SPECTRA_PATH, first_time
+    return EXOTRANSMIT_URL, EXOTRANSMIT_ORIGINAL_PATH, EXOTRANSMIT_CLUSTER_PATH, EXOTRANSMIT_SPECTRA_PATH, SETUP_COMPLETED
 
 
 def _configure_exotransmit_cluster(reconfigure=False):
@@ -125,9 +123,9 @@ def _configure_exotransmit_cluster(reconfigure=False):
         if not confirm:
             return
 
-    EXOTRANSMIT_URL, EXOTRANSMIT_ORIGINAL_PATH, EXOTRANSMIT_CLUSTER_PATH, EXOTRANSMIT_SPECTRA_PATH, run_full_setup = _read_config_data()
+    EXOTRANSMIT_URL, EXOTRANSMIT_ORIGINAL_PATH, EXOTRANSMIT_CLUSTER_PATH, EXOTRANSMIT_SPECTRA_PATH, SETUP_COMPLETED = _read_config_data()
 
-    if run_full_setup:
+    if not SETUP_COMPLETED:
 
         # Create a user version of the blank config file which we can then edit
         shutil.copy(PATH_TO_ORIGINAL_CONFIG_FILE, PATH_TO_CONFIG_FILE)
